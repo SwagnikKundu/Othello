@@ -9,6 +9,21 @@ public class Othello{
     private static int playerCount=0;
 
     static Scanner sc=new Scanner(System.in);
+    
+    private static int getMove(Players p) {
+    	int status;
+    	System.out.println("Player - "+p.getName()+"'s turn for color "+p.getColor()+" :");
+        System.out.println("Enter x value:");
+        int x=sc.nextInt();
+        System.out.println("Enter y value:");
+        int y=sc.nextInt();
+        status=board.move(p.getColor(),--y,--x);
+        if(status==Board.INVALIDMOVE)
+            System.out.println("Invalid Move. Please try again !!!!!!");
+         
+        return status;
+        
+    }
 
     public static void main(String[] args){
 
@@ -39,34 +54,13 @@ public class Othello{
         int status=Board.INCOMPLETE;
         while(status==Board.INCOMPLETE || status==Board.INVALIDMOVE){
             if(p1Turn){
-                System.out.println("Player - 1 "+player1.getName()+"'s turn for color "+player1.getColor()+" :");
-                System.out.println("Enter x value:");
-                int x=sc.nextInt();
-                System.out.println("Enter y value:");
-                int y=sc.nextInt();
-                status=board.move(player1.getColor(),x,y);
-                if(status==Board.INVALIDMOVE){
-                    System.out.println("Invalid Move. Please try again !!!!!!");
-                    board.printBoard();
-                    board.printNumber();
-                    continue;
-                }
+            	status=getMove(player1);
             }
             else{
-                System.out.println("Player - 2 "+player2.getName()+"'s turn for color "+player2.getColor()+" :");
-                System.out.println("Enter x value:");
-                int x=sc.nextInt();
-                System.out.println("Enter y value:");
-                int y=sc.nextInt();
-                status=board.move(player2.getColor(),x,y);
-                if(status==Board.INVALIDMOVE){
-                    System.out.println("Invalid Move. Please try again !!!!!!");
-                    board.printBoard();
-                    board.printNumber();
-                    continue;
-                }
+            	status=getMove(player2);
             }
-            p1Turn=!p1Turn;
+            if(status!=Board.INVALIDMOVE)
+            	p1Turn=!p1Turn;
             board.printBoard();
             board.printNumber();
         }
