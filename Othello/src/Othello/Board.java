@@ -52,13 +52,16 @@ public class Board{
 
 
     public static void printBoard(){
-        System.out.println("_______________________________________");
+        System.out.println("__________________________________");
         for(int i=0;i<boardSize;i++){
+        	System.out.print(i+1+"|");
             for(int j=0;j<boardSize;j++)
-                System.out.print("| "+board[i][j]+" |");
+                System.out.print(" "+board[i][j]+" |");
             System.out.println();
-            System.out.println("_______________________________________");
+            System.out.println("__________________________________");
+            
         }
+        System.out.println(" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |");
        
     }
 
